@@ -52,17 +52,7 @@ class EmbeddingSequenceDataset(Dataset):
         emb = torch.from_numpy(pooled).float()
 
         is_fragment = float(rec.get("is_fragment", 0))
-        # make fragment_types robust to pandas NaN/None: coerce to string and treat NaN as empty
-        frag_val = rec.get("fragment_types", "")
-        try:
-            import math
-            if isinstance(frag_val, float) and math.isnan(frag_val):
-                frag_types_str = ""
-            else:
-                frag_types_str = str(frag_val) if frag_val is not None else ""
-        except Exception:
-            frag_types_str = str(frag_val) if frag_val is not None else ""
-
+        frag_types_str = rec.get("fragment_types", "") or ""
         frag_types = [0.0] * len(self.FRAG_TYPE_ORDER)
         if frag_types_str:
             for lab in frag_types_str.split(";"):
