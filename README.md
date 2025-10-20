@@ -1,4 +1,4 @@
-![ProtFrag Logo](protfrog_logo.png)
+![ProtFrag Logo](https://github.com/AndreasWz/protfrag/blob/main/protfrag_logo.png)
 
 # ProtFrag — fragment detection from pLM embeddings
 
