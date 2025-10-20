@@ -24,8 +24,8 @@ class FragmentDetector(pl.LightningModule):
         self.loss_fn = nn.BCEWithLogitsLoss()
         self.lr = lr
 
-        self.train_det_auc = AUROC(pos_label=1)
-        self.val_det_auc = AUROC(pos_label=1)
+        self.train_det_auc = AUROC(task="binary")
+        self.val_det_auc = AUROC(task="binary")
         self.val_f1 = F1Score(task="binary")
 
     def forward(self, emb):
@@ -71,13 +71,19 @@ class FragmentDetector(pl.LightningModule):
 
         return {"det_logits": det_logit, "is_fragment": batch["is_fragment"], "type_logits": type_logits}
 
-    def validation_epoch_end(self, outputs):
+    def on_validation_epoch_end(self) -> None:
+        """Compatibility with Lightning v2+: compute and log validation AUROC here.
+        We use the torchmetrics AUROC instance stored on the module.
+        """
         try:
             auc = self.val_det_auc.compute()
+            # log scalar (on_epoch True is default for this hook)
             self.log("val/det_auc", auc, prog_bar=True)
+            # reset metric for next epoch
             self.val_det_auc.reset()
         except Exception:
             pass
+
 
     def configure_optimizers(self):
         opt = torch.optim.AdamW(self.parameters(), lr=self.lr)
