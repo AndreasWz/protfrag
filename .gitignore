@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pt
+*.ckpt
+*.pth
+.env
+logs/
+output/
+*.ipynb_checkpoints
+.DS_Store
+.vscode/

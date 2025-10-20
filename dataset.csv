@@ -1,0 +1,4 @@
+id,sequence,embedding_path,is_fragment,fragment_types
+seq1,ACDEFGHIKLMNPQRSTVWY,,0,
+seq2,CDEFGHIKLMNPQRSTVWY,,1,N
+seq3,ACDEFGHIKLMNPQ,,1,C;I
