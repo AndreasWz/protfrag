@@ -42,21 +42,21 @@ def main():
     ckpt_cb = ModelCheckpoint(monitor='val/loss', mode='min')
     es = EarlyStopping(monitor='val/loss', patience=5, mode='min')
 
-    if args.gpus and args.gpus>0:
+    if args.gpus and args.gpus > 0:
         accelerator = 'gpu'
         devices = args.gpus
     else:
         accelerator = 'cpu'
         devices = 1
-    accelerator = 'gpu'
-    devices = args.gpus
-else:
-    accelerator = 'cpu'
-    devices = 1
 
-trainer = pl.Trainer(max_epochs=args.max_epochs, callbacks=[ckpt_cb, es],
-                     accelerator=accelerator, devices=devices)
+    trainer = pl.Trainer(
+        max_epochs=args.max_epochs,
+        callbacks=[ckpt_cb, es],
+        accelerator=accelerator,
+        devices=devices
+    )
     trainer.fit(model, datamodule=dm)
+
 
 if __name__ == '__main__':
     main()
