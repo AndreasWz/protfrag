@@ -1,6 +1,4 @@
-![ProtFrag Logo](https://github.com/AndreasWz/protfrag/blob/main/protfrag_logo.png)
-
-# ProtFrag — fragment detection from pLM embeddings
+# ProtFrag :frog: — fragment detection from pLM embeddings
 
 Starter repo for detecting protein sequence fragments and their types using protein language model (pLM) embeddings (e.g. ProtT5).
 
