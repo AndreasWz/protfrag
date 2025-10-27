@@ -1,0 +1,33 @@
+{
+  "roc_auc": 0.9076,
+  "average_precision": 0.933040702437228,
+  "mcc": 0.7143348789350016,
+  "confusion_matrix": [
+    [
+      91,
+      9
+    ],
+    [
+      20,
+      80
+    ]
+  ],
+  "per_type": {
+    "type_0": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "type_1": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "type_2": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "n_samples": 200
+}
