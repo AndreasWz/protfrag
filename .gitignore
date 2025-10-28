@@ -1,4 +1,6 @@
 __pycache__/
+data/splits
+data/uniprot
 */embeddings/
 lightning_logs/
 *.pyc
