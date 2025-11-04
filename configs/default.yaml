@@ -1,0 +1,41 @@
+# configs/default.yaml
+seed: 42
+deterministic: true
+
+data:
+  metadata_path: "data/processed/metadata.csv" # Correct path
+  embeddings_dir: "data/embeddings"
+  batch_size: 128
+  num_workers: 4
+  embedding_type: "mean_pooled"
+  pin_memory: true
+  # Add A2's augmentation if needed
+  # use_weighted_sampling: false
+  # augmentation_noise_std: 0.0
+  # augmentation_dropout: 0.0
+
+model:
+  _target_: src.model.FragmentDetector # Updated path to class
+  embedding_dim: 1024
+  hidden_dims: [512, 256]
+  dropout: 0.3
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  binary_loss_weight: 1.0
+  multilabel_loss_weight: 1.0
+  use_class_weights: true
+  scheduler: "cosine"
+  warmup_epochs: 5
+
+training:
+  max_epochs: 100
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 1
+  accelerator: "auto"
+  devices: 1
+  precision: 32
+  log_every_n_steps: 10
+  val_check_interval: 1.0
+  checkpoint_dir: "checkpoints"
+  log_dir: "lightning_logs"
+  early_stopping_patience: 15
