@@ -1,6 +1,0 @@
-training:
-  batch_size: 64
-  max_epochs: 20
-  pool: mean
-  hidden_dim: 512
-  lr: 1e-4
