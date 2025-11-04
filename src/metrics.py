@@ -39,7 +39,7 @@ class PerClassMCC(Metric):
     def __init__(self, num_classes: int, **kwargs):
         super().__init__(**kwargs)
         self.num_classes = num_classes
-        self.mccs = torch.nn.ModuleList([BinaryMatthewsCorrCoef() for _ in range(num_classes)])
+        self.mccs = torch.nn.ModuleList([BinaryMatthewsCorrCoef(task="binary") for _ in range(num_classes)])
 
     def update(self, preds: torch.Tensor, target: torch.Tensor):
         for i in range(self.num_classes):

@@ -16,4 +16,5 @@ dependencies = [
     "pyyaml",
     "matplotlib",
     "seaborn",
+    "tensorboard"
 ]

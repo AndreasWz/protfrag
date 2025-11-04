@@ -41,20 +41,19 @@ def train(config: dict):
     # 3. Initialize model
     # We pass model hparams manually
     model = FragmentDetector(
-        embedding_dim=config['model']['embedding_dim'],
-        hidden_dims=config['model']['hidden_dims'],
-        dropout=config['model']['dropout'],
-        learning_rate=config['training']['learning_rate'],
-        weight_decay=config['model'].get('weight_decay', 1e-4), # Get from model or training
-        binary_loss_weight=config['model'].get('binary_loss_weight', 1.0),
-        multilabel_loss_weight=config['model'].get('multilabel_loss_weight', 1.0),
-        use_class_weights=config['model'].get('use_class_weights', True),
-        binary_class_weights=class_weights['binary'],
-        multilabel_class_weights=class_weights['multilabel'],
-        scheduler=config['model'].get('scheduler', 'cosine'),
-        warmup_epochs=config['model'].get('warmup_epochs', 5),
-        max_epochs=config['training']['max_epochs'] # For scheduler
-    )
+            embedding_dim=config['model']['embedding_dim'],
+            hidden_dims=config['model']['hidden_dims'],
+            dropout=config['model']['dropout'],
+            learning_rate=config['model']['learning_rate'],
+            weight_decay=config['model'].get('weight_decay', 1e-4),
+            binary_loss_weight=config['model'].get('binary_loss_weight', 1.0),
+            multilabel_loss_weight=config['model'].get('multilabel_loss_weight', 1.0),
+            use_class_weights=config['model'].get('use_class_weights', True),
+            binary_class_weights=class_weights['binary'],
+            multilabel_class_weights=class_weights['multilabel'],
+            scheduler=config['model'].get('scheduler', 'cosine'),
+            warmup_epochs=config['model'].get('warmup_epochs', 5)
+        )
     
     # 4. Callbacks
     checkpoint_callback = ModelCheckpoint(

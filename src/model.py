@@ -59,9 +59,9 @@ class FragmentDetector(pl.LightningModule):
         self.multilabel_criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight_multi)
         
         # Metrics
-        self.train_binary_mcc = MatthewsCorrCoef()
-        self.val_binary_mcc = MatthewsCorrCoef()
-        self.test_binary_mcc = MatthewsCorrCoef()
+        self.train_binary_mcc = MatthewsCorrCoef(task="binary")
+        self.val_binary_mcc = MatthewsCorrCoef(task="binary")
+        self.test_binary_mcc = MatthewsCorrCoef(task="binary")
         
         self.val_multilabel_metrics = MultilabelMetrics(num_classes=3)
         self.test_multilabel_metrics = MultilabelMetrics(num_classes=3)
@@ -198,7 +198,7 @@ class FragmentDetector(pl.LightningModule):
             # A simpler CosineAnnealingLR is often sufficient.
             scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
                 optimizer,
-                T_max=self.hparams.max_epochs - self.hparams.warmup_epochs
+                T_max=self.trainer.max_epochs - self.hparams.warmup_epochs
             )
             return [optimizer], [scheduler]
         elif self.hparams.scheduler == 'reduce_on_plateau':
