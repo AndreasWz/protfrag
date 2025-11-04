@@ -101,6 +101,8 @@ Override Configs (Optional):
 
 Bash
 
+Navigate to http://localhost:6006/ to see val/binary_mcc and other metrics.
+
 ### Train with a different batch size and dropout
 python train.py --config configs/default.yaml \
   --override data.batch_size=64 model.dropout=0.5

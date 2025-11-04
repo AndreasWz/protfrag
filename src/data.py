@@ -1,4 +1,5 @@
 # src/data.py
+
 import torch
 import pandas as pd
 from torch.utils.data import Dataset, DataLoader
@@ -7,6 +8,7 @@ from pathlib import Path
 from sklearn.utils.class_weight import compute_class_weight
 import numpy as np
 
+# (This class is probably fine, but included for completeness)
 class ProteinFragmentDataset(Dataset):
     def __init__(self, metadata_df: pd.DataFrame, embedding_dir: Path, embedding_type: str = "mean_pooled"):
         self.metadata = metadata_df.reset_index(drop=True)
@@ -48,6 +50,10 @@ class ProteinFragmentDataset(Dataset):
             "fragment_types": label_type
         }
 
+#
+# --- PASTE THIS ENTIRE CLASS ---
+#
+
 class FragmentDataModule(pl.LightningDataModule):
     def __init__(
         self,
@@ -62,7 +68,10 @@ class FragmentDataModule(pl.LightningDataModule):
         super().__init__()
         self.save_hyperparameters()
         self.metadata_path = Path(self.hparams.metadata_path)
+        # --- This is the fix from the 'str' vs 'Path' error ---
+        # We save the Path object here for the dataloaders
         self.embedding_dir = Path(self.hparams.embedding_dir)
+        # ---
         
         self.train_df = None
         self.val_df = None
@@ -116,7 +125,8 @@ class FragmentDataModule(pl.LightningDataModule):
     def _create_dataset(self, df: pd.DataFrame) -> ProteinFragmentDataset:
         return ProteinFragmentDataset(
             metadata_df=df,
-            embedding_dir=self.hparams.embedding_dir,
+            # Use the Path object, not the hparams string
+            embedding_dir=self.embedding_dir,
             embedding_type=self.hparams.embedding_type
         )
 
@@ -141,8 +151,9 @@ class FragmentDataModule(pl.LightningDataModule):
         )
 
     def test_dataloader(self):
+        # --- This was the fix for the previous error ---
         return DataLoader(
-            self.test_dataset or self._create_dataset(self.test_df),
+            self._create_dataset(self.test_df),
             batch_size=self.hparams.batch_size,
             shuffle=False,
             num_workers=self.hparams.num_workers,
