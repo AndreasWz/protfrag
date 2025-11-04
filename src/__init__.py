@@ -1,6 +1,4 @@
-# Make the FragmentAnnotationParser available at the package level
-from .fragment_parser import FragmentAnnotationParser
+# src/__init__.py
 
-__all__ = [
-    "FragmentAnnotationParser"
-]
+# This file is intentionally left empty.
+# It marks the 'src' directory as a Python package.
