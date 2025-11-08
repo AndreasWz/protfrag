@@ -1,18 +1,55 @@
-__pycache__/
-data/splits
-data/uniprot
-*/embeddings/
+#--- Python Virtual Environment ---
+
+/.python-version
+
+#Ignore the virtual environment created by uv or venv
+.venv/
+venv/
+env/
+*.egg-info/
+
+#--- Data ---
+
+#Ignore all downloaded raw data
+data/raw/
+#Ignore all generated processed data
+data/processed/
+#Ignore all generated embeddings (these are very large)
+data/embeddings/
+
+#--- MMseqs2 ---
+
+#Ignore temporary files created by mmseqs
+data/processed/clustered/tmp/
+
+#--- Logs & Results ---
+
+#Ignore PyTorch Lightning logs
 lightning_logs/
+#Ignore model checkpoints
+checkpoints/
+#Ignore generated evaluation results
+results/
+
+#--- Python Cache ---
+
+pycache/
 *.pyc
-*.pt
-*.ckpt
-*.pth
-.env
-logs/
-output/
-*.ipynb_checkpoints
-.DS_Store
+*.pyo
+
+#--- IDE & OS ---
+
+#VSCode
 .vscode/
+#macOS
+.DS_Store
+.AppleDouble
+
+#--- Jupyter Notebooks ---
+
+#Ignore notebook checkpoints
+.ipynb_checkpoints/
+
+# subject to change (tmp for non uv users/ new uv users)
 /pyproject.toml
 /uv.lock
-/.python-version
