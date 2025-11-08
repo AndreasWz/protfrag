@@ -51,5 +51,5 @@ pycache/
 .ipynb_checkpoints/
 
 # subject to change (tmp for non uv users/ new uv users)
-/pyproject.toml
-/uv.lock
+pyproject.toml
+uv.lock
