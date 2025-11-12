@@ -16,5 +16,6 @@ dependencies = [
     "pyyaml",
     "matplotlib",
     "seaborn",
-    "tensorboard"
+    "tensorboard",
+    "h5py>=3.14.0",
 ]
