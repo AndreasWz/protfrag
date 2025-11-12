@@ -1,6 +1,7 @@
 # scripts/04_precompute_embeddings.py
 """
 Precompute ProtT5 embeddings for all sequences.
+! only needed if not all seqs got loaded by 03_unpack_embeddings.py
 """
 import argparse
 from pathlib import Path
