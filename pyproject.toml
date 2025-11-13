@@ -18,4 +18,5 @@ dependencies = [
     "seaborn",
     "tensorboard",
     "h5py>=3.14.0",
+    "jupyter>=1.1.1",
 ]
