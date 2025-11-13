@@ -16,7 +16,7 @@ data/raw/
 data/processed/
 #Ignore all generated embeddings (these are very large)
 data/embeddings/
-data/embeddings_download
+data/uniprot
 
 #--- MMseqs2 ---
 
