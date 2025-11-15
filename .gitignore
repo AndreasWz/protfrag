@@ -54,3 +54,5 @@ pycache/
 # subject to change (tmp for non uv users/ new uv users)
 pyproject.toml
 uv.lock
+
+data/custom_fragments/data/
