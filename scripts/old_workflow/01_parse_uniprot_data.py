@@ -100,7 +100,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse UniProt data into a clean metadata file.")
-    parser.add_argument('--raw_dir', type=str, default='data/raw', help='Directory with raw UniProt files')
+    parser.add_argument('--raw_dir', type=str, default='data/uniprot', help='Directory with raw UniProt files')
     parser.add_argument('--processed_dir', type=str, default='data/processed', help='Directory to save processed metadata')
     parser.add_argument('--n_term_thresh', type=int, default=10, help='Position threshold for N-terminal')
     parser.add_argument('--c_term_thresh', type=int, default=10, help='Position threshold for C-terminal')
