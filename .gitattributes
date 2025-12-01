@@ -2,3 +2,4 @@
 data/custom_fragments/dataset1.fasta filter=lfs diff=lfs merge=lfs -text
 data/custom_fragments/dataset2.fasta filter=lfs diff=lfs merge=lfs -text
 data/custom_fragments/dataset3.fasta filter=lfs diff=lfs merge=lfs -text
+*.pkl filter=lfs diff=lfs merge=lfs -text
