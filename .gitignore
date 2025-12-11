@@ -56,3 +56,4 @@ pyproject.toml
 uv.lock
 
 data/custom_fragments/data/
+/experiments/test.csv
